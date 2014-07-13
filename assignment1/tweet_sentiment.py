@@ -1,4 +1,5 @@
 import sys
+import json
 
 def hw():
     print 'Hello, world!'
@@ -13,8 +14,15 @@ def main():
     for line in sent_file:
     	term,score = line.split("\t")
     	scores[term] = int(score)
+	first_line
+    for line in tweet_file:
+    	first_line=json.load(line)
+    	break
+    print first_line
+    #print scores.items()	
+    # prints keyvalues for all scores
 
-    print scores.items()	
+
     #hw()
     #lines(sent_file)
     #lines(tweet_file)
