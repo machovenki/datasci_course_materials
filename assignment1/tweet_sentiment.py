@@ -14,11 +14,14 @@ def main():
     for line in sent_file:
     	term,score = line.split("\t")
     	scores[term] = int(score)
-	first_line
+    count = 0
     for line in tweet_file:
-    	first_line=json.load(line)
-    	break
-    print first_line
+    	if count == 10:
+    		break
+    	else :
+    		count = count+1
+    		data=json.loads(line)
+    		print data
     #print scores.items()	
     # prints keyvalues for all scores
 
