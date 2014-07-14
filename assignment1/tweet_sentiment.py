@@ -14,15 +14,15 @@ def main():
     for line in sent_file:
     	term,score = line.split("\t")
     	scores[term] = int(score)
-    count = 0
+
     for line in tweet_file:
-    	if count == 10:
-    		break
-    	else :
-    		count = count+1
-    		data=json.loads(line)
-    		print data
-    #print scores.items()	
+        raw_data = json.loads(line)
+        text = raw_data.get('text', "").lower().encode('utf-8')
+        sentient_score = 0
+        for word in text.split():
+            if word in scores:
+                    sentient_score += scores[term]
+        print sentient_score	
     # prints keyvalues for all scores
 
 
