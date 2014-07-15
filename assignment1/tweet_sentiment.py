@@ -1,5 +1,6 @@
 import sys
 import json
+import re
 
 def hw():
     print 'Hello, world!'
@@ -16,19 +17,16 @@ def main():
     	scores[term] = int(score)
 
     for line in tweet_file:
-        raw_data = json.loads(line)
-        text = raw_data.get('text', "").lower().encode('utf-8')
-        sentient_score = 0
-        for word in text.split():
-            if word in scores:
-                    sentient_score += scores[term]
-        print sentient_score	
-    # prints keyvalues for all scores
-
-
-    #hw()
-    #lines(sent_file)
-    #lines(tweet_file)
+        tweet_raw_data = json.loads(line)
+        if 'entities' in tweet_raw_data.keys():
+            tweet_text = tweet_raw_data.get('text').lower().encode('utf-8')
+            #print tweet_text
+            final_tweet_text=re.findall(r"[\w']+", tweet_text)
+            sentient_score = 0
+            for word in final_tweet_text:
+                if word in scores:
+                    sentient_score += scores[word]
+            print sentient_score
 
 if __name__ == '__main__':
     main()
